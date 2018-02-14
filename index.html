@@ -51,7 +51,7 @@
 			</div>
 		</div>
         <div class="modal-footer ">
-			<button type="button" class="btn btn-warning btn-lg update_btn" style="width: 100%;"><span class="glyphicon glyphicon-ok-sign"></span>
+			<button type="button" class="btn btn-warning btn-lg update_btn" data-title='Edit"+i+"' onclick="Edit();" style="width: 100%;"><span class="glyphicon glyphicon-ok-sign"></span>
 				Update
 			</button>
       </div>
@@ -159,8 +159,9 @@
 					Price : $(".price").val()
 				});//Alter the selected item on the table
 			localStorage.setItem("tbClients", JSON.stringify(tbClients));
-			alert("The data was edited.")
-			operation = "A"; //Return to default value
+			//alert("The data was edited.");
+			$('#edit').modal("toggle");
+			window.location.reload(100);
 			return true;
 		} 
 		
@@ -187,14 +188,14 @@
 			);
 			for(var i in tbClients) {
 				var cli = JSON.parse(tbClients[i]);
-				console.log("cli:"+cli);
+				//console.log("cli:"+cli);
 				$("#mytable tbody").append("<tr>"+
 				"<td>"+cli.Name+"</td>"+
 				"<td>"+cli.Description+"</td>"+
 				"<td>"+cli.Category+"</td>"+
 				"<td>"+cli.Price+"</td>"+
 				"<td><p data-placement='top' data-toggle='tooltip' title='Edit'><button class='btn btn-primary btn-xs edit_btn' data-title='Edit"+i+"' data-toggle='modal' data-target='#edit' ><span class='glyphicon glyphicon-pencil'></span></button></p></td>"+
-				"<td><p data-placement='top' data-toggle='tooltip' title='Delete'><button class='btn btn-danger btn-xs delete_btn' data-title='Delete"+i+"' data-toggle='modal' data-target='' ><span class='glyphicon glyphicon-trash'></span></button></p></td>"+
+				"<td><p data-placement='top' data-toggle='tooltip' title='Delete'><button class='btn btn-danger btn-xs delete_btn' data-title='Delete"+i+"'><span class='glyphicon glyphicon-trash'></span></button></p></td>"+
 				"</tr>");
 			}
 		}	
